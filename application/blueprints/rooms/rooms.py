@@ -7,16 +7,15 @@ from werkzeug import exceptions
 from application import db
 from application.blueprints.rooms.model import Rooms
 from application.blueprints.auth.auth import login_required
-import requests
 import cloudinary
 from cloudinary import api
 
 rooms_bp = Blueprint("rooms", __name__)
 
 cloudinary.config(
-    cloud_name="de2nposrf",
-    api_key="612397944851626",
-    api_secret="KfbF-3DLY1VEOUaS-vr5cY1ZU5U"
+    cloud_name=os.environ["CLOUD_NAME"],
+    api_key=os.environ["API_KEY"],
+    api_secret=os.environ["API_SECRET"]
 )
 
 @rooms_bp.route("/rooms", methods=['GET', 'POST'])
