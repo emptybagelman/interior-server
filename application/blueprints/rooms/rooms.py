@@ -7,7 +7,6 @@ from werkzeug import exceptions
 from application import db
 from application.blueprints.rooms.model import Rooms
 from application.blueprints.auth.auth import login_required
-import requests
 import cloudinary
 from cloudinary import api
 
