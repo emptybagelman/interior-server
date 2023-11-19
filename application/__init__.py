@@ -40,12 +40,14 @@ def create_app():
         from application.blueprints.auth.auth import auth_bp
         from application.blueprints.likes.likes import likes_bp
         from application.blueprints.filestorage.filestorage import filestorage_bp
+        from application.blueprints.comments.comments import comments_bp
 
         app.register_blueprint(users_bp)
         app.register_blueprint(rooms_bp)
         app.register_blueprint(auth_bp)
         app.register_blueprint(likes_bp)
         app.register_blueprint(filestorage_bp)
+        app.register_blueprint(comments_bp)
     
         
         db.create_all()

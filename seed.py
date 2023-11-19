@@ -2,6 +2,7 @@ from application import create_app, db
 from application.blueprints.users.model import Users
 from application.blueprints.rooms.model import Rooms
 from application.blueprints.likes.model import Likes
+from application.blueprints.comments.model import Comments
 
 
 app = create_app()
@@ -30,8 +31,12 @@ with app.app_context():
     entry13 = Likes(user_id=1, room_id=2)
     entry14 = Likes(user_id=3, room_id=2)
     entry15 = Likes(user_id=1, room_id=3)
+    comment1 = Comments(comment="1 Comment", initial_comment=True, user_id=1, room_id=1)
+    comment2 = Comments(comment="2 Comment", initial_comment=False, user_id=1, room_id=1, parent_id=1, root_id=1)
+    comment3 = Comments(comment="3 Comment", initial_comment=False, user_id=1, room_id=1, parent_id=2, root_id=1)
+    comment4 = Comments(comment="4 Comment", initial_comment=True, user_id=1, room_id=1)
 
 
-    db.session.add_all([entry1,entry2,entry3,entry4,entry5,entry6,entry7, entry8,entry9,entry10, entry11, entry12, entry13, entry14, entry15])
+    db.session.add_all([entry1,entry2,entry3,entry4,entry5,entry6,entry7, entry8,entry9,entry10, entry11, entry12, entry13, entry14, entry15,comment1,comment2,comment3,comment4])
 
     db.session.commit()
