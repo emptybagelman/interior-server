@@ -10,13 +10,13 @@ class Comments(db.Model):
     comment = db.Column(db.String(100), nullable = False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     initial_comment = db.Column(db.Boolean, nullable = False, default = True)
-    username = db.Column(db.String(100), db.ForeignKey("users.username"), nullable = False)
+    username = db.Column(db.String(100), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"),nullable = False)
     room_id = db.Column(db.Integer, db.ForeignKey("rooms.id"), nullable = False)
     parent_id = db.Column(db.Integer, nullable = True)
     root_id = db.Column(db.Integer, nullable = True)
 
-    user = db.relationship("Users", backref = db.backref("comments",lazy=True), foreign_keys=["users.id","users.username"])
+    user = db.relationship("Users", backref = db.backref("comments",lazy=True))
     room = db.relationship("Rooms", backref = db.backref("comments",lazy=True))
 
     def __repr__(self):
