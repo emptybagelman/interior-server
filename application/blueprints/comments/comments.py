@@ -26,7 +26,12 @@ def handle_comments():
             # room_id = request.form.get("room_id")
             # parent_id = request.form.get("parent_id")
 
-            new_comment = Comments(comment=comment, initial_comment=initial_comment, username=username, user_id=user_id, room_id=room_id, parent_id=parent_id, root_id=root_id)
+            if initial_comment == "true":
+                initcom = True
+            else:
+                initcom = False
+
+            new_comment = Comments(comment=comment, initial_comment=initcom, username=username, user_id=user_id, room_id=room_id, parent_id=parent_id, root_id=root_id)
 
             db.session.add(new_comment)
             db.session.commit()
