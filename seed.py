@@ -31,10 +31,10 @@ with app.app_context():
     entry13 = Likes(user_id=1, room_id=2)
     entry14 = Likes(user_id=3, room_id=2)
     entry15 = Likes(user_id=1, room_id=3)
-    comment1 = Comments(comment="1 Comment", initial_comment=True, user_id=1, room_id=1)
-    comment2 = Comments(comment="2 Comment", initial_comment=False, user_id=1, room_id=1, parent_id=1, root_id=1)
-    comment3 = Comments(comment="3 Comment", initial_comment=False, user_id=1, room_id=1, parent_id=2, root_id=1)
-    comment4 = Comments(comment="4 Comment", initial_comment=True, user_id=1, room_id=1)
+    comment1 = Comments(comment="1 Comment", initial_comment=True, username="user1", user_id=1, room_id=1)
+    comment2 = Comments(comment="2 Comment", initial_comment=False, username="user1", user_id=1, room_id=1, parent_id=1, root_id=1)
+    comment3 = Comments(comment="3 Comment", initial_comment=False, username="user3", user_id=1, room_id=1, parent_id=2, root_id=1)
+    comment4 = Comments(comment="4 Comment", initial_comment=True, username="user2", user_id=1, room_id=1)
 
 
     db.session.add_all([entry1,entry2,entry3,entry4,entry5,entry6,entry7, entry8,entry9,entry10, entry11, entry12, entry13, entry14, entry15,comment1,comment2,comment3,comment4])

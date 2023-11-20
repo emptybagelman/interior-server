@@ -18,7 +18,7 @@ def handle_comments():
         
     if request.method == "POST":
         try:
-            comment, initial_comment, user_id, room_id, parent_id, root_id = request.json.values()
+            comment, initial_comment, username, user_id, room_id, parent_id, root_id = request.json.values()
             # comment = request.form.get("comment")
             # # date = request.form.get("date")
             # initial_comment = request.form.get("initial_comment")
@@ -26,7 +26,7 @@ def handle_comments():
             # room_id = request.form.get("room_id")
             # parent_id = request.form.get("parent_id")
 
-            new_comment = Comments(comment=comment, initial_comment=initial_comment, user_id=user_id, room_id=room_id, parent_id=parent_id, root_id=root_id)
+            new_comment = Comments(comment=comment, initial_comment=initial_comment, username=username, user_id=user_id, room_id=room_id, parent_id=parent_id, root_id=root_id)
 
             db.session.add(new_comment)
             db.session.commit()
