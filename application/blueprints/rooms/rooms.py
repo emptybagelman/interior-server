@@ -111,6 +111,16 @@ def show_rooms(id):
 
         return jsonify({"data": room.json }), 200
 
+@rooms_bp.route("/rooms/<string:category>", methods=["GET"])
+def getByCategory(category):
+    try:
+        rooms = Rooms.query.filter_by(category=category).all()
+    except:
+        raise exceptions.NotFound("Room category not found")
+    
+    if request.method == "GET":
+        data = [r.json for r in rooms]
+        return jsonify({"data":data})
 
 @rooms_bp.route("/rooms/delete-folder",methods=["POST"])
 def delete_folder():
