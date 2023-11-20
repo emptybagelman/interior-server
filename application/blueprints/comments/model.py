@@ -16,7 +16,7 @@ class Comments(db.Model):
     parent_id = db.Column(db.Integer, nullable = True)
     root_id = db.Column(db.Integer, nullable = True)
 
-    user = db.relationship("Users", backref = db.backref("comments",lazy=True))
+    user = db.relationship("Users", backref = db.backref("comments",lazy=True), foreign_keys=["users.id","users.username"])
     room = db.relationship("Rooms", backref = db.backref("comments",lazy=True))
 
     def __repr__(self):
