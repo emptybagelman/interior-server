@@ -51,6 +51,15 @@ def get_user_comments(id):
         return jsonify({"data": data}),200
 
 
+@comments_bp.route("/comments/room/<int:room_id>", methods=["GET"])
+def get_room_comments(room_id):
+    try:
+        comments = Comments.query.filter_by(room_id=room_id).all()
+    except:
+        raise exceptions.NotFound("Room comments do not exist")
+    if request.method == "GET":
+        data = [c.json for c in comments]
+        return jsonify({"data": data}), 200
 
 
 @comments_bp.route("/comments/users/<int:user_id>/<int:id>", methods=["GET","PATCH","DELETE"])
