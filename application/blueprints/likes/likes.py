@@ -35,18 +35,18 @@ def handle_likes():
             raise exceptions.InternalServerError("Something went wrong")
 
 
-
-
 @likes_bp.route("/likes/user/<int:id>", methods=['GET'])
 def show_likes_user(id):
     if request.method == "GET":
-        likes = Likes.query.filter_by(user_id=id).all()
+        temp = Likes.query.filter_by(user_id=id)
+        likes = temp.all()
+        count = temp.count()
         data = [l.json for l in likes]
 
         if not data:
             raise exceptions.NotFound("Likes not found for this user")
         
-        return jsonify({"data": data}), 200
+        return jsonify({"data": data,"count":count}), 200
             
 
 

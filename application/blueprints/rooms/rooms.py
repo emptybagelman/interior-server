@@ -111,6 +111,8 @@ def show_rooms(id):
 
         return jsonify({"data": room.json }), 200
 
+
+
 @rooms_bp.route("/rooms/<string:category>", methods=["GET"])
 def getByCategory(category):
     try:
@@ -121,6 +123,8 @@ def getByCategory(category):
     if request.method == "GET":
         data = [r.json for r in rooms]
         return jsonify({"data":data})
+
+
 
 @rooms_bp.route("/rooms/delete-folder",methods=["POST"])
 def delete_folder():
