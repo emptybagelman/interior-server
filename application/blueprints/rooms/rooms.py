@@ -49,7 +49,9 @@ def handle_rooms():
 
         return jsonify({"data": new_room.json}), 201
 
-@rooms_bp.route("/rooms/users/<int:id>",methods=["GET"])
+
+
+@rooms_bp.route("/rooms/users/<int:user_id>",methods=["GET"])
 def show_user_rooms(user_id):
     try:
         user_rooms = Rooms.query.filter_by(user_id=user_id).all()
@@ -59,6 +61,7 @@ def show_user_rooms(user_id):
     
     if request.method == "GET":
         return jsonify({"data":data}), 200
+
 
 
 @rooms_bp.route("/rooms/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
