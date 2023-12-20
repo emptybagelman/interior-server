@@ -17,6 +17,7 @@ class Rooms(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     fetchUID = db.Column(db.String(100),nullable=False)
     likes = db.relationship('Likes', backref='rooms', cascade='all, delete-orphan')
+    children = db.relationship('Comments', backref='rooms',lazy='dynamic')
   
     
 

@@ -30,16 +30,6 @@ def handle_rooms():
 
 
     if request.method == "POST":
-        # upload room files to s3 storage
-        # files = request.files
-        # form_name = request.form.get("name")
-        # positions = ["px","nx","py","ny","pz","nz"]
-        # for count, file in enumerate(files):
-        #     x = files[file]
-        #     try:
-        #         s3.upload_fileobj(x, os.environ["BUCKET_NAME"], f'environment-maps/{form_name}/{positions[count]}')
-        #     except Exception as e:
-        #         return f"An error occurred: {str(e)}", 500
         try:
             name = request.form.get("name")
             dimensions = request.form.get("dimensions")
@@ -58,6 +48,16 @@ def handle_rooms():
                 return f"An error occurred: {str(e)}", 400
 
         return jsonify({"data": new_room.json}), 201
+
+@rooms_bp.route("/rooms/users/<int:id>",methods=["GET"])
+def show_user_rooms(user_id):
+    try:
+        user_rooms = Rooms.query.filter_by(user_id=user_id).all()
+    except:
+        raise exceptions.NotFound("User has no rooms or cannot be found.")
+    
+    if request.method == "GET":
+        return jsonify({"data":user_rooms.json()}), 200
 
 
 @rooms_bp.route("/rooms/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
