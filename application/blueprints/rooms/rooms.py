@@ -58,7 +58,7 @@ def show_user_rooms(user_id):
         raise exceptions.NotFound("User has no rooms or cannot be found.")
     
     if request.method == "GET":
-        return jsonify({"data":data.json()}), 200
+        return jsonify({"data":data}), 200
 
 
 @rooms_bp.route("/rooms/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
