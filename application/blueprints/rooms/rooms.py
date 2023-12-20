@@ -53,11 +53,12 @@ def handle_rooms():
 def show_user_rooms(user_id):
     try:
         user_rooms = Rooms.query.filter_by(user_id=user_id).all()
+        data = [r.json for r in user_rooms]
     except:
         raise exceptions.NotFound("User has no rooms or cannot be found.")
     
     if request.method == "GET":
-        return jsonify({"data":user_rooms.json()}), 200
+        return jsonify({"data":data.json()}), 200
 
 
 @rooms_bp.route("/rooms/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
