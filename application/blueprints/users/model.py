@@ -11,16 +11,13 @@ from application.blueprints.likes.model import Likes
 class Users(db.Model):
     __tablename__='users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True, nullable=False)
+    avatar_image = db.Column(db.String, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    avatar_image = db.Column(db.String, nullable=False)
+    username = db.Column(db.String(100), unique=True, nullable=False)
+
     rooms = db.relationship('Rooms', backref='users')
     likes = db.relationship('Likes', backref='users')
-   
-
-    
-
 
     def __repr__(self):
         return f"Users(id: {self.id}, username: {self.username} )"

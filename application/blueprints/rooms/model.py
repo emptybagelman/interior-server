@@ -8,14 +8,14 @@ from application.blueprints.likes.model import Likes
 class Rooms(db.Model):
     __tablename__='rooms'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=True, nullable=False)
-    dimensions = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(100), nullable=False)
-    theme = db.Column(db.String(100), nullable=False)
     category = db.Column(db.String(100), nullable=False)
-    # cover_image = db.Column(db.String(), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    description = db.Column(db.String(100), nullable=False)
+    dimensions = db.Column(db.String(100), nullable=False)
     fetchUID = db.Column(db.String(100),nullable=False)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    theme = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    
     likes = db.relationship('Likes', backref='rooms', cascade='all, delete-orphan')
     children = db.relationship('Comments', backref='rooms',lazy='dynamic')
   

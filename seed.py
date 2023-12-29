@@ -16,27 +16,23 @@ with app.app_context():
 
     print('Seeding database')
 
-    entry1 = Users(username = "user1", email = "1@gmail.com", password="ZXKCASASFAFA", avatar_image="https://interior-cloud-store.s3.amazonaws.com/avatar-images/profile.png")
-    entry2 = Users(username = "user2", email = "2@gmail.com", password="DSFSAREGER", avatar_image="https://interior-cloud-store.s3.amazonaws.com/avatar-images/profile.png")
-    entry3 = Users(username = "user3", email = "3@gmail.com", password="GFDGSRGEW", avatar_image="https://interior-cloud-store.s3.amazonaws.com/avatar-images/profile.png")
-    entry4 = Users(username = "user4", email = "4@gmail.com", password="FSDF943KDSFAJE", avatar_image="https://interior-cloud-store.s3.amazonaws.com/avatar-images/profile.png")
-    entry5 = Users(username = "user5", email = "5@gmail.com", password="5dskfroir", avatar_image="https://interior-cloud-store.s3.amazonaws.com/avatar-images/profile.png")
-    entry6 = Users(username = "user6", email = "6@gmail.com", password="sakdsa382aweqw", avatar_image="https://interior-cloud-store.s3.amazonaws.com/avatar-images/profile.png")
-    entry7 = Rooms(name="My personal room", dimensions="12 ft x 18 ft", description="My new room for my new house", theme="Art Deco" , category="FILLER", user_id=1, fetchUID="111")
-    entry8 = Rooms(name="My living room", dimensions="12 ft x 18 ft", description="My new living room for my new house", theme="Bohemian" ,category="FILLER", user_id=2, fetchUID="112")
-    entry9 = Rooms(name="My bathroom", dimensions="12 ft x 18 ft", description="My new bathroom for my new house", theme="12 ft x 18 ft" ,category="FILLER", user_id=3, fetchUID="113")
-    entry10 = Likes(user_id=1, room_id=1)
-    entry11 = Likes(user_id=3, room_id=3)
-    entry12 = Likes(user_id=4, room_id=2)
-    entry13 = Likes(user_id=1, room_id=2)
-    entry14 = Likes(user_id=3, room_id=2)
-    entry15 = Likes(user_id=1, room_id=3)
-    comment1 = Comments(comment="1 Comment", initial_comment=True, username="user1", user_id=1, room_id=1)
-    comment2 = Comments(comment="2 Comment", initial_comment=False, username="user1", user_id=1, room_id=1, parent_id=1, root_id=1)
-    comment3 = Comments(comment="3 Comment", initial_comment=False, username="user3", user_id=1, room_id=1, parent_id=2, root_id=1)
-    comment4 = Comments(comment="4 Comment", initial_comment=True, username="user2", user_id=1, room_id=1)
+    user_init = Users(username = "user1", email = "1@gmail.com", password="ZXKCASASFAFA", avatar_image="https://interior-cloud-store.s3.amazonaws.com/avatar-images/profile.png")
+    room_init = Rooms(name="My personal room", dimensions="12 ft x 18 ft", description="My new room for my new house", theme="Art Deco" , category="FILLER", user_id=1, fetchUID="111")
+    like_init = Likes(user_id=1, room_id=1)
+    comment_init = Comments(comment="1 Comment", initial_comment=True, username="user1", user_id=1, room_id=1)
+
+    room1 = Rooms(name="Cozy_Bedroom", dimensions="8ft x 8ft", description="Very aesthetic", theme="Peaceful" , category="Bedroom", user_id=1, fetchUID="")
+    room2 = Rooms(name="Posh", dimensions="8ft x 8ft", description="Very aesthetic", theme="Money" , category="Living", user_id=1, fetchUID="")
+    room3 = Rooms(name="Blues", dimensions="5x5", description="Id sleep here", theme="Modern" , category="Bedroom", user_id=1, fetchUID="")
+    room4 = Rooms(name="Very_Yellow", dimensions="8x6", description="Backrooms vibes", theme="Contemporary" , category="Living", user_id=1, fetchUID="")
+    room5 = Rooms(name="White_Kitchen", dimensions="6x6", description="Thats a kitchen alright", theme="Modern" , category="Kitchen", user_id=1, fetchUID="")
+    room6 = Rooms(name="Licensed_", dimensions="5x5", description="Bruh", theme="Modern" , category="Living", user_id=1, fetchUID="")
+    room7 = Rooms(name="Artists_Hole", dimensions="small", description="messy", theme="Art??" , category="Studio", user_id=1, fetchUID="")
+    room8 = Rooms(name="TV_set", dimensions="12x12", description="big filmy shit here", theme="Industry" , category="Studio", user_id=1, fetchUID="")
+    room9 = Rooms(name="Gazebo", dimensions="big", description="big", theme="big" , category="Garden", user_id=1, fetchUID="")
 
 
-    db.session.add_all([entry1,entry2,entry3,entry4,entry5,entry6,entry7, entry8,entry9,entry10, entry11, entry12, entry13, entry14, entry15,comment1,comment2,comment3,comment4])
+
+    db.session.add_all([user_init, room_init, like_init, comment_init, room1, room2, room3, room4, room5, room6, room7, room8, room9,])
 
     db.session.commit()

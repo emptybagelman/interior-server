@@ -10,12 +10,8 @@ from application import db
 class Likes(db.Model):
     __tablename__='likes'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
-    
-
-    
-
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
         return f"Likes(id: {self.id}, user_id: {self.user_id}, room_id: {self.room_id} )"
